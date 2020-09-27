@@ -1,0 +1,200 @@
+<!-- responsible for this page is benjamin.blankertz@tu-berlin.de -->
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.01 transitional//en">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Data Set IVb for the BCI Competition III</title>
+  <style type="text/css">
+    body { margin-left:5%; margin-right:5% }
+  </style>
+</head>
+<body>
+
+<font face="sans-serif">
+
+<h2 align="center">
+Data set IVb
+<i>‹motor imagery, uncued classifier application›</i>
+</h2>
+<p></p>
+
+Data set provided by Fraunhofer FIRST, Intelligent Data Analysis Group
+(Klaus-Robert Müller, Benjamin Blankertz), and 
+Campus Benjamin Franklin of the Charité - University Medicine Berlin,
+Department of Neurology, Neurophysics Group (Gabriel Curio)
+
+<p>
+Correspondence to Benjamin Blankertz 
+<a href="mailto:benjamin.blankertz@tu-berlin.de">
+⟨benjamin.blankertz@tu-berlin.de⟩</a>
+</p>
+
+
+<p></p>
+<h3>The Thrill</h3>
+Most demonstrations of algorithms on BCI data are just evaluating
+classification of EEG trials, i.e., windowed EEG signals for fixed
+length, where each trial corresponds to a specific mental state.
+But in BCI applications with continuous feedback one is faced with 
+the problem that the classifier has to be applied continuously to 
+the incoming EEG without having cues of when the subject is
+switching her/his intention. This data set poses the challenge of
+applying a classifier to continuous EEG for which no cue information
+is given. <br>
+
+Another issue that is addressed in this data set is that the test data
+contains periods in which the user has no control intention. During
+those intervals the classifier is supposed to return 0 (no affiliation
+to one of the target classes).  Our experience is that is does not
+help to include a <i>relax</i> class in the training measurement,
+because the mental state of <i>relax</i> during an initial recording
+(without feedback) is substatially different from the mental state of
+having no control intention during feedback. During feedback the user
+is in a rather active state, and despite of having no actual control
+intention the user may very well have strong considerations concerning
+her/his feedback application.
+
+When one can design a classifier that positively recognizes the two
+learned classes (here <i>left</i> and <i>foot</i> motor imagery) it
+should return zero for other mental states as <i>relax</i> or periods
+of absense of control intention.
+
+
+
+<p></p>
+<h3>Experimental Setup</h3>
+This data set was recorded from one healthy subject. He sat in a
+comfortable chair with arms resting on armrests. This data set
+contains only data from the 7 initial sessions without feedback. The
+first 3 sessions are given with labels as training set. Visual cues
+(letter presentation) indicated for 3.5 seconds which of the following
+3 motor imageries the subject should perform: (L) <i>left</i> hand,
+(F) right <i>foot</i>, (Z) <i>tongue</i> (=Zunge in german).  The
+presentation of target cues were intermitted by periods of random
+length, 1.75 to 2.25 seconds, in which the subject could
+relax. Continous EEG signals of sessions 4 to 7 are given without any
+cue information (neither target class nor timing) as test set. In
+these sessions the target classes <i>left</i>, <i>foot</i> and
+<i>relax</i> were ordered by acoustic stimuli for periods for varying
+length between 1.5 and 8 seconds. Intermitting periods were given as
+above. <br>
+
+
+
+<p></p>
+<h3>Format of the Data</h3>
+
+<p>Given are continuous signals of 118 EEG channels and, for the
+training data, markers that indicate the time points of 210 cues and
+the corresponding target classes. Only cues for the classes
+<i>left</i> and <i>foot</i> are provided for the competition (since
+tongue imagery was not performed in the test sessions).
+</p>
+
+<p>
+Data are provided in <b>Matlab</b> format (<tt>*.mat</tt>) containing 
+variables:
+</p><ul>
+ <li><tt>cnt</tt>: the continuous EEG signals, size [time x channels].
+  The array is stored in datatype <tt>INT16</tt>. To convert it to
+  uV values, use <tt>cnt= 0.1*double(cnt);</tt> in Matlab. </li>
+ <li><tt>mrk</tt>: structure of target cue information with fields
+  (the file of test data contains only the first field)
+ <ul>
+  <li><tt>pos</tt>: vector of positions of the cue in the EEG signals given in
+   unit <i>sample</i>, length #cues </li>
+  <li><tt>y</tt>: vector of target classes (-1 for <i>left</i> or 1 for
+   <i>foot</i>), length #cues </li> 
+ </ul>
+ </li><li><tt>info</tt>: structure providing additional information with fields
+ <ul>
+  <li><tt>name</tt>: name of the data set, </li>
+  <li><tt>fs</tt>: sampling rate, </li>
+  <li><tt>clab</tt>: cell array of channel labels, </li>
+  <li><tt>xpos</tt>: x-position of electrodes in a 2d-projection, </li>
+  <li><tt>ypos</tt>: y-position of electrodes in a 2d-projection. </li> 
+ </ul>
+</li></ul>
+
+As alternative, data is also provided in zipped <b>ASC II</b> format:
+<ul>
+ <li><tt>*_cnt.txt</tt>: the continuous EEG signals, where each
+  row holds the values for all channels at a specific time point </li>
+ <li><tt>*_mrk.txt</tt>: target cue information, each row represents one cue
+  where the first value defines the time point (given in unit <i>sample</i>),
+  and the second value the target class (-1 for <i>left</i> or 1 for
+  <i>foot</i>). The file of test data only contains time points.
+  </li>
+ <li><tt>*_nfo.txt</tt>: contains other information as described for the
+  matlab format. </li>
+</ul> 
+<p></p>
+
+
+<p></p>
+<h3>Requirements and Evaluation</h3>
+
+<p>
+Please provide an ASC II file (named 'result_IVb.txt') containing
+classifier outputs (real number between -1 and 1) for each sample
+point of the test signals, one value per line. (I.e., the file should
+have 76566 lines.) The submissions are evaluated in view of a one
+dimensional cursor control application with range from -1 to 1. The
+mental state <i>left</i> is used to position the cursor at -1, and the
+mental state <i>foot</i> is used to position the cursor near 1. In the
+absense of those mental states (<i>left</i> and <i>foot</i>) the
+cursor should be at position 0.  The latter requirement is checked at
+intervals in which the subject was instructed to <i>relax</i>. The
+output during intermitting periods (in which the subject is not in a
+defined mental state) are ignored.  Note that it is unknown to the
+competitors at what intervals the subject is in a defined mental
+state.  Competitiors submit classifier outputs for all time points.
+The evaluation function calculates the squared error with respect to
+the target vector that is -1 for class <i>left</i>, 1 for <i>foot</i>,
+and 0 for <i>relax</i>, averaged across all time points for which the
+subject is in a defined mental state (these 'active areas' are delayed
+for 500ms compared to the stimuli to account for the reaction
+time). <br>
+
+You also have to provide a description of the used algorithm (ASC II,
+HTML or PDF format) for publication at the results web page.
+</p>
+
+
+
+<p></p> 
+<h3>Technical Information</h3> 
+
+The recording was made using BrainAmp amplifiers and a 128 channel
+Ag/AgCl electrode cap from ECI. 118 EEG channels were measured at
+positions of the extended international 10/20-system. Signals were
+band-pass filtered between 0.05 and 200&nbsp;Hz and then digitized at
+1000&nbsp;Hz with 16 bit (0.1 uV) accuracy.  We provide also a version
+of the data that is downsampled at 100&nbsp;Hz (by picking each 10th
+sample) that we typically use for analysis.
+
+
+<p></p> 
+<h3>References</h3> 
+
+<ul>
+<li><a name="dorblacurmue04"></a><strong>Guido Dornhege, Benjamin 
+Blankertz, Gabriel Curio, and Klaus-Robert Müller</strong>.
+Boosting bit rates in non-invasive EEG single-trial classifications by
+feature combination and multi-class paradigms.
+<cite>IEEE Trans. Biomed. Eng.</cite>, 51(6):993-1002, June 2004.
+</li>
+</ul>
+Note that the above reference describes an older experimental setup.
+A new paper analyzing data sets similar to the one provided in this 
+competition and presenting feedback results will appear soon.
+
+<p></p>
+<hr>
+
+<p align="center">
+[ <a href="http://www.bbci.de/competition/iii">BCI Competition III</a> ]
+</p><p>
+
+
+
+</p></font></body></html>

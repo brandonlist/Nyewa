@@ -1,0 +1,205 @@
+<!-- responsible for this page is benjamin.blankertz@tu-berlin.de -->
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.01 transitional//en">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Data Set IVa for the BCI Competition III</title>
+  <style type="text/css">
+    body { margin-left:5%; margin-right:5% }
+  </style>
+</head>
+<body>
+
+<font face="sans-serif">
+
+<h2 align="center">
+Data set IVa
+<i>‹motor imagery, small training sets›</i>
+</h2>
+<p></p>
+
+Data set provided by Fraunhofer FIRST, Intelligent Data Analysis Group
+(Klaus-Robert Müller, Benjamin Blankertz), and 
+Campus Benjamin Franklin of the Charité - University Medicine Berlin,
+Department of Neurology, Neurophysics Group (Gabriel Curio)
+
+<p>
+Correspondence to Benjamin Blankertz 
+<a href="mailto:benjamin.blankertz@tu-berlin.de">
+⟨benjamin.blankertz@tu-berlin.de⟩</a>
+</p>
+
+
+<p></p>
+<h3>The Thrill</h3>
+When taking a machine learning approach to Brain-Computer Interfacing,
+one has to have labelled training data to teach the classifer. To this
+end, the user usually performs a boring calibration measurement before
+starting with BCI feedback applications. One important objective in
+BCI research is to reduce the time needed for the initial measurement.
+This data set poses the challenge of getting along with only a little
+amount of training data. One approach to the problem is to use
+information from other subjects' measurements to reduce the amount of
+training data needed for a new subject. Of course, competitors may
+also try algorithms that work on small training sets without using the
+information from other subjects.
+
+
+<p></p>
+<h3>Experimental Setup</h3>
+This data set was recorded from five healthy subjects. Subjects sat in
+a comfortable chair with arms resting on armrests. This data set contains
+only data from the 4 initial sessions without feedback. Visual cues
+indicated for 3.5&nbsp;s which of the following 3 motor imageries
+the subject should perform: (L) <i>left</i> hand, (R) <i>right</i> hand, 
+(F) right <i>foot</i>.
+The presentation of target cues were intermitted by periods of random length,
+1.75 to 2.25&nbsp;s, in which the subject could relax. <br>
+
+There were two types of visual stimulation: (1) where targets were
+indicated by letters appearing behind a fixation cross
+(which might nevertheless induce little target-correlated eye movements), 
+and (2) where a randomly moving object indicated targets
+(inducing target-uncorrelated eye movements). From subjects <i>al</i> and
+<i>aw</i> 2 sessions of both types were recorded, while from the
+other subjects 3 sessions of type (2) and 1 session of type (1)
+were recorded.
+
+
+
+<p></p>
+<h3>Format of the Data</h3>
+
+<p>Given are continuous signals of 118 EEG channels and markers that
+indicate the time points of 280 cues for each of the 5 subjects
+(<i>aa</i>, <i>al</i>, <i>av</i>, <i>aw</i>, <i>ay</i>).  For some
+markers no target class information is provided (value <tt>NaN</tt>)
+for competition purpose. Only cues for the classes 'right' and 'foot'
+are provided for the competition.  The following table shows the
+respective number of training (labelled) trials "#tr" and test
+(unlabelled) trials "#te" for each subject.
+
+<table align="center">
+<tbody><tr>
+ <th></th>
+ <th>#tr</th>
+ <th>#te</th> </tr>
+<tr>
+ <td><i>aa</i></td>
+ <td align="right">&nbsp;168</td>
+ <td align="right">112</td> </tr>
+<tr>
+ <td><i>al</i></td>
+ <td align="right">224</td>
+ <td align="right">56</td> </tr>
+<tr>
+ <td><i>av</i></td>
+ <td align="right">84</td>
+ <td align="right">196</td> </tr>
+<tr>
+ <td><i>aw</i></td>
+ <td align="right">56</td>
+ <td align="right">&nbsp;224</td> </tr>
+<tr>
+ <td><i>ay</i></td>
+ <td align="right">28</td>
+ <td align="right">252</td> </tr>
+</tbody></table>
+</p>
+
+<p>
+Data are provided in <b>Matlab</b> format (<tt>*.mat</tt>) containing 
+variables:
+</p><ul>
+ <li><tt>cnt</tt>: the continuous EEG signals, size [time x channels].
+  The array is stored in datatype <tt>INT16</tt>. To convert it to
+  uV values, use <tt>cnt= 0.1*double(cnt);</tt> in Matlab. </li>
+ <li><tt>mrk</tt>: structure of target cue information with fields
+ <ul>
+  <li><tt>pos</tt>: vector of positions of the cue in the EEG signals given in
+   unit <i>sample</i>, length #cues </li>
+  <li><tt>y</tt>: vector of target classes (1, 2, or <tt>NaN</tt>), 
+   length #cues </li>
+  <li><tt>className</tt>: cell array of class names. </li> 
+ </ul>
+ </li><li><tt>info</tt>: structure providing additional information with fields
+ <ul>
+  <li><tt>name</tt>: name of the data set, </li>
+  <li><tt>fs</tt>: sampling rate, </li>
+  <li><tt>clab</tt>: cell array of channel labels, </li>
+  <li><tt>xpos</tt>: x-position of electrodes in a 2d-projection, </li>
+  <li><tt>ypos</tt>: y-position of electrodes in a 2d-projection. </li> 
+ </ul>
+</li></ul>
+
+As alternative, data is also provided in zipped <b>ASC II</b> format 
+(splitted into three files for each subject):
+<ul>
+ <li><tt>*_cnt.txt</tt>: the continuous EEG signals, where each
+  row holds the values for all channels at a specific time point </li>
+ <li><tt>*_mrk.txt</tt>: target cue information, each row represents one cue
+  where the first value defines the time point (given in unit <i>sample</i>)
+  </li>
+  and the second value the target class (1= right, 2=foot, or 0 for test
+  trials).
+ <li><tt>*_nfo.txt</tt>: contains other information as described for the
+  matlab format. </li>
+</ul> 
+<p></p>
+
+
+<p></p>
+<h3>Requirements and Evaluation</h3>
+
+<p>
+Please provide for each subject an ASC II file (named 'result_IVa_aa.txt',
+'result_IVa_al.txt', ...) containing 280 lines of your
+estimated class labels (1 or 2) for every cue. (For training trials
+this should be the respective value of <tt>mrk.y</tt>, and for test
+trials the output of your algorithm.)  
+<br>
+You also have to provide a description of the used algorithm (ASC II,
+HTML or PDF format) for publication at the results web page.
+</p>
+
+<p>
+The performance measure is the overall classification accuracy (number of
+correct classified test trials divided by the total number of test trials).
+</p>
+
+<p></p> 
+<h3>Technical Information</h3> 
+
+The recording was made using BrainAmp amplifiers and a 128 channel
+Ag/AgCl electrode cap from ECI. 118 EEG channels were measured at
+positions of the extended international 10/20-system. Signals were
+band-pass filtered between 0.05 and 200&nbsp;Hz and then digitized at
+1000&nbsp;Hz with 16 bit (0.1 uV) accuracy.  We provide also a version
+of the data that is downsampled at 100&nbsp;Hz (by picking each 10th
+sample) that we typically use for analysis.
+
+
+<p></p> 
+<h3>References</h3> 
+
+<ul>
+<li><a name="dorblacurmue04"></a><strong>Guido Dornhege, Benjamin 
+Blankertz, Gabriel Curio, and Klaus-Robert Müller</strong>.
+Boosting bit rates in non-invasive EEG single-trial classifications by
+feature combination and multi-class paradigms.
+<cite>IEEE Trans. Biomed. Eng.</cite>, 51(6):993-1002, June 2004.
+</li>
+</ul>
+Note that the above reference describes an older experimental setup.
+A new paper analyzing the data sets as provided in this competition
+and presenting the feedback results will appear soon.
+
+<p></p>
+<hr>
+
+<p align="center">
+[ <a href="http://www.bbci.de/competition/iii">BCI Competition III</a> ]
+</p><p>
+
+
+
+</p></font></body></html>

@@ -1,0 +1,156 @@
+from sklearn.metrics import classification_report
+from sklearn.metrics import precision_recall_fscore_support
+y_true = [0, 1, 2, 2, 0 ,1, 0]
+y_pred = [0, 0, 2, 2, 0 ,1, 1]
+target_names = ['class 0', 'class 1', 'class 2']
+print(classification_report(y_true, y_pred,target_names=target_names))
+p_r_f_s = precision_recall_fscore_support(y_true,y_pred)
+"""
+             precision    recall  f1-score   support
+    class 0       0.67      0.67      0.67         3
+    class 1       0.50      0.50      0.50         2
+    class 2       1.00      1.00      1.00         2
+avg / total       0.71      0.71      0.71         7
+
+(array([0.66666667, 0.5       , 1.        ]),
+ array([0.66666667, 0.5       , 1.        ]),
+ array([0.66666667, 0.5       , 1.        ]),
+ array([3, 2, 2], dtype=int64))
+
+"""
+
+#多分类不需要扩展
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_true, y_pred)
+"""
+[[2 1 0]
+ [1 1 0]
+ [0 0 2]]
+"""
+
+from sklearn.metrics import accuracy_score
+acc = accuracy_score(y_true, y_pred) #0.7142...
+acc_num = accuracy_score(y_true, y_pred, normalize=False) #5
+
+from sklearn.metrics import cohen_kappa_score
+#https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html
+kappa =cohen_kappa_score(y_true,y_pred) #kappa = (acc-pe)/(a-pe)     parameter symmetric  kappa值惩罚偏向性的模型（即全部预测成一类的模型） 那是不是可以把kappa值作为损失函数？
+#0.5625
+
+#多分类需要扩展
+
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score,fbeta_score
+
+p_classes = precision_score(y_true,y_pred,average=None) #[0.6667,0.5,1]
+p_macro =  precision_score(y_true,y_pred,average='macro') #0.72
+p_micro =  precision_score(y_true,y_pred,average='micro') #0.714285...
+
+r_classes = recall_score(y_true,y_pred,average=None) #[0.6667,0.5,1]
+r_macro =  recall_score(y_true,y_pred,average='macro') #0.72
+r_micro =  recall_score(y_true,y_pred,average='micro') #0.714285...
+
+f1_classes = f1_score(y_true,y_pred,average=None)  #[0.6667,0.5,1]
+f1_macro = f1_score(y_true,y_pred,average='macro')  #0.72
+f1_micro = f1_score(y_true,y_pred,average='micro')  #0.714285...
+
+fbeta_classes = fbeta_score(y_true,y_pred,beta=1,average=None)  #[0.6667,0.5,1]
+fbeta_macro = fbeta_score(y_true,y_pred,beta=1,average='macro')  #0.72
+fbeta_micro = fbeta_score(y_true,y_pred,beta=1,average='micro')  #0.714285...
+#fbeta = (1+beta^2)PR/(beta^2P+R)   beta > 1 ， R 影响更大
+"""
+average : string, [None, 'binary' (default), 'micro', 'macro', 'samples', \
+                       'weighted']
+        This parameter is required for multiclass/multilabel targets.
+        If ``None``, the scores for each class are returned. Otherwise, this
+        determines the type of averaging performed on the data:
+
+        ``'binary'``:
+            Only report results for the class specified by ``pos_label``.
+            This is applicable only if targets (``y_{true,pred}``) are binary.
+        ``'micro'``:
+            Calculate metrics globally by counting the total true positives,
+            false negatives and false positives.
+        ``'macro'``:
+            Calculate metrics for each label, and find their unweighted
+            mean.  This does not take label imbalance into account.
+        ``'weighted'``:
+            Calculate metrics for each label, and find their average, weighted
+            by support (the number of true instances for each label). This
+            alters 'macro' to account for label imbalance; it can result in an
+            F-score that is not between precision and recall.
+        ``'samples'``:
+            Calculate metrics for each instance, and find their average (only
+            meaningful for multilabel classification where this differs from
+            :func:`accuracy_score`).
+
+"""
+
+
+
+from sklearn.preprocessing import label_binarize
+import numpy as np
+y_one_hot = label_binarize(y_true,np.arange(3))
+y_logit = np.array([[0.4,0.3,0.3],
+           [0.6,0.1,0.3],
+           [0.1,0.3,0.6],
+           [0.2,0.1,0.7],
+           [0.6,0.2,0.2],
+           [0.2,0.5,0.3],
+           [0.1,0.8,0.1]])
+from sklearn.metrics import precision_recall_curve,average_precision_score
+
+#此种方法对应于average_precision_score的参数average=micro
+"""
+Micro
+首先，对于一个测试样本：1）标签只由0和1组成，1的位置表明了它的类别（可对应二分类问题中的‘’正’’），
+0就表示其他类别（‘’负‘’）；2）要是分类器对该测试样本分类正确，则该样本标签中1对应的位置在概率矩阵P
+中的值是大于0对应的位置的概率值的。基于这两点，将标签矩阵L和概率矩阵P分别按行展开，转置后形成两
+列，这就得到了一个二分类的结果。所以，此方法经过计算后可以直接得到最终的ROC曲线
+"""
+p_curve,r_curve,th_pr = precision_recall_curve(y_one_hot.ravel(),y_logit.ravel())
+average_precision_mi = average_precision_score(y_one_hot,y_logit,average='micro')  #area under PR curve
+#average_precision_score(y_one_hot,y_logit,average='micro') == average_precision_score(y_one_hot.ravel(),y_logit.ravel())
+
+
+#此种方法对应于average_precision_score的参数average=macro
+"""
+Macro
+每种类别下，都可以得到m个测试样本为该类别的概率（矩阵P中的列）。所以，根据概率矩阵P和标签矩阵L中
+对应的每一列，可以计算出各个阈值下的假正例率（FPR）和真正例率（TPR），从而绘制出一条ROC曲线。这样
+总共可以绘制出n条ROC曲线。最后对n条ROC曲线取平均，即可得到最终的ROC曲线。
+"""
+ap = 0
+for i in range(y_one_hot.shape[1]):
+    y_logit_i = y_logit[:,i]
+    y_one_hot_i = y_one_hot[:,i]
+    p_curve_i, r_curve_i, th_pr = precision_recall_curve(y_one_hot_i, y_logit_i)
+    #注意这里每次算出的fpr_i和tpr_i形状都有可能不同
+    ap_i = average_precision_score(y_one_hot_i, y_logit_i)
+    ap += ap_i
+ap /= y_one_hot.shape[1]
+average_precision_ma = average_precision_score(y_one_hot,y_logit,average='macro')
+# ap==average_precision_ma
+
+from sklearn.metrics import roc_curve,auc,roc_auc_score
+
+#对应于roc_auc_score的参数average=micro
+fpr,tpr,th_roc = roc_curve(y_one_hot.ravel(),y_logit.ravel())
+roc_auc = auc(fpr,tpr)
+roc_auc_score(y_one_hot,y_logit,average='micro')
+
+#对应于roc_auc_score的参数average=macro
+ac = 0
+for i in range(y_one_hot.shape[1]):
+    y_logit_i = y_logit[:,i]
+    y_one_hot_i = y_one_hot[:,i]
+    fpr_i, tpr_i, th_roc = roc_curve(y_one_hot_i, y_logit_i)
+    #注意这里每次算出的fpr_i和tpr_i形状都有可能不同
+    ac_i = auc(fpr_i,tpr_i)
+    ac += ac_i
+ac /= y_one_hot.shape[1]
+
+import matplotlib.pyplot as plt
+plt.plot(fpr,tpr)
