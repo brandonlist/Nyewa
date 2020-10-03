@@ -34,7 +34,7 @@ class ImageInspector(tk.Frame):
         self.label.insert(0, str(self.datasets.classes_dict[self.datasets.datas['labels'][int(self.var.get())]]))
 
 class CIFAR10(Dataset):
-    def __init__(self,file_dir=r'G:\CIFAR-10'):
+    def __init__(self,file_dir=r'H:\Datasets\CIFAR-10'):
         super(CIFAR10, self).__init__()
         self.type = 'CV'
         self.file_dir = file_dir

@@ -5,59 +5,102 @@ import time
 import matplotlib.pyplot as plt
 import copy
 
-def get_random_param(params,range=False,log=None):
+# def get_random_param(params,range=False,log=None):
+#     """
+#     return random value of set in params
+#     :param params:
+#     for range==False, params can be:
+#         test_params=OrderedDict({
+#         'p1':[1,2,3,4],
+#         'p2':[1,3,4,5],
+#         'p3':np.arange(5)
+#     })
+#     for range==True, params can be:
+#         test_params_range=OrderedDict({
+#             'p1':[1,4],
+#             'p2':[1.2,5.6],
+#             'p3':[1e-5,1e-2],
+#             'p4':[True,False]
+#         })
+#     :param range: Should be set to True if only the min and max are provided, Otherwise False
+#     :param log: Whether to use logspace, can only be used when range is True
+#     :return:
+#     """
+#     #TODO:range can be list indicating which param is using range
+#     epsilon = 1e-10
+#     if log==None:
+#         log = [False] * len(params)
+#     if range==False:
+#         values = {}
+#         for i,key in enumerate(params):
+#             assert np.array(range).any()==False,print('can only use log space when parameter range is True')
+#             idx = random.randint(0, len(params[key])-1)
+#             value = params[key][idx]
+#             values[key] = value
+#         return values
+#     elif range==True:
+#         values = {}
+#         for i,key in enumerate(params):
+#             assert len(params[key])==2,print('please enter 2 nums if using range')
+#             if log[i]==False:
+#                 if type(params[key][0])==bool:
+#                     value = random.uniform(0,1) < 0.5
+#                 else:
+#                     assert params[key][0] < params[key][1], print('first value have to be smaller than the latter one')
+#                     value = random.uniform(float(params[key][0]),float(params[key][1]))
+#                     if type(params[key][0])==int:
+#                         value = int(value)
+#                 values[key] = value
+#             elif log[i]==True:
+#                 low_bound = np.array(params[key][0])
+#                 high_bound = np.array(params[key][1])
+#                 value = random.uniform(np.log10(low_bound+epsilon),np.log10(high_bound+epsilon))
+#                 value = np.power(10,value)
+#                 values[key] = value
+#         return values
+
+model_hypers = OrderedDict({
+    'linear_init_std':([0,0.5],'range','log'),
+    'conv_init_bias':([0,1e-3],'range','linear'),
+    'n_kernel_0':([5,6],'set',None),
+    'n_kernel_1':([15,16],'set',None),
+})
+
+def _get_random_param(params):
     """
-    return random value of set in params
-    :param params:
-    for range==False, params can be:
-        test_params=OrderedDict({
-        'p1':[1,2,3,4],
-        'p2':[1,3,4,5],
-        'p3':np.arange(5)
-    })
-    for range==True, params can be:
-        test_params_range=OrderedDict({
-            'p1':[1,4],
-            'p2':[1.2,5.6],
-            'p3':[1e-5,1e-2],
-            'p4':[True,False]
-        })
-    :param range: Should be set to True if only the min and max are provided, Otherwise False
-    :param log: Whether to use logspace, can only be used when range is True
-    :return:
+
     """
-    #TODO:range can be list indicating which param is using range
     epsilon = 1e-10
-    if log==None:
-        log = [False] * len(params)
-    if range==False:
-        values = {}
-        for i,key in enumerate(params):
-            assert np.array(range).any()==False,print('can only use log space when parameter range is True')
-            idx = random.randint(0, len(params[key])-1)
-            value = params[key][idx]
-            values[key] = value
-        return values
-    elif range==True:
-        values = {}
-        for i,key in enumerate(params):
-            assert len(params[key])==2,print('please enter 2 nums if using range')
-            if log[i]==False:
-                if type(params[key][0])==bool:
-                    value = random.uniform(0,1) < 0.5
+    values = {}
+    for i,key in enumerate(params):
+        items = params[key]
+        para,range,log = items[0],items[1],items[2]
+        if range=='range':
+            assert len(para)==2,print('please enter 2 nums if using range')
+            if log=='linear':
+                if type(para[0]) == bool:
+                    value = random.uniform(0, 1) < 0.5
                 else:
-                    assert params[key][0] < params[key][1], print('first value have to be smaller than the latter one')
-                    value = random.uniform(float(params[key][0]),float(params[key][1]))
-                    if type(params[key][0])==int:
+                    value = random.uniform(float(para[0]), float(para[1]))
+                    if type(para[0]) == int:
                         value = int(value)
-                values[key] = value
-            elif log[i]==True:
-                low_bound = np.array(params[key][0])
-                high_bound = np.array(params[key][1])
+            elif log=='log':
+                low_bound = np.array(para[0])
+                high_bound = np.array(para[1])
                 value = random.uniform(np.log10(low_bound+epsilon),np.log10(high_bound+epsilon))
                 value = np.power(10,value)
-                values[key] = value
-        return values
+            else:
+                print('unknown type of log')
+                return None
+        elif range=='set':
+            assert log==None,print('must set log to None if using set')
+            idx = random.randint(0, len(para)-1)
+            value = para[idx]
+        else:
+            print('unknown type of range')
+            return None
+        values[key] = value
+    return values
 
 
 class RandomSearcher(object):
@@ -65,83 +108,62 @@ class RandomSearcher(object):
     model should have method model.fit
 
     """
-    def __init__(self,model_hypers,optimizer_hypers,loss_hypers,model_type):
+    def __init__(self,model_hypers,optimizer_hypers,loss_hypers,model_type,
+                 model_const,fit_const):
         self.model_hypers = model_hypers
         self.optimizer_hypers = optimizer_hypers
         self.loss_hypers = loss_hypers
-        self.params = model_hypers.copy()
-        self.params.update(self.optimizer_hypers)
-        self.params.update(self.loss_hypers)
+        self.model_const = model_const
+        self.fit_const = fit_const
 
         self.model_type = model_type
         self.models = []
 
 
-    def getModelValue(self,range,log):
-        model_hyper = get_random_param(self.model_hypers,range,log)
+    def getModelValue(self):
+        model_hyper = _get_random_param(self.model_hypers)
         return model_hyper
 
-    def getOptimValue(self,range,log):
-        optimizer_hyper = get_random_param(self.optimizer_hypers,range,log)
+    def getOptimValue(self):
+        optimizer_hyper = _get_random_param(self.optimizer_hypers)
         return optimizer_hyper
 
-    def getLossValue(self,range,log):
-        loss_hyper = get_random_param(self.loss_hypers,range,log)
+    def getLossValue(self):
+        loss_hyper = _get_random_param(self.loss_hypers)
         return loss_hyper
 
-    #TODO:change it to Search you idiot
-    def runOneRandomSearch(self,model_const,model_range,model_log,
-                           fit_const,optim_range,optim_log,
-                           loss_range,loss_log):
-        model_hyper = self.getModelValue(model_range,model_log)
-        self.model_hyper = model_hyper
-        model = self.model_type(model_const,model_hyper)
-        #TODO:check if model works using a input
+    def update_hyper(self):
+        self.model_hyper = self.getModelValue()
+        self.optimizer_hyper = self.getOptimValue()
+        self.loss_hyper = self.getLossValue()
 
-        optimizer_hyper = self.getOptimValue(optim_range,optim_log)
-        self.optimizer_hyper = optimizer_hyper
-        loss_hyper = self.getLossValue(loss_range,loss_log)
-        self.loss_hyper = loss_hyper
-        model.compile(fit_const,optimizer_hyper,loss_hyper)
+    def runOneRandomSearch(self):
+        self.update_hyper()
+        model = self.model_type(self.model_const,self.model_hyper)
+        model.compile(self.fit_const,self.optimizer_hyper,self.loss_hyper)
         epoch_dfs = model.fitter.runRandomSearch()
-        self.models.append((model,model_hyper,optimizer_hyper,loss_hyper,epoch_dfs))
+        self.models.append((model,self.model_hyper,self.optimizer_hyper,self.loss_hyper,epoch_dfs))
         return epoch_dfs
 
-    def prepareRandomSearch(self,model_const,model_range,model_log,
-                           fit_const,optim_range,optim_log,
-                           loss_range,loss_log):
-        model_hyper = self.getModelValue(model_range, model_log)
-        self.model_hyper = model_hyper
-        model = self.model_type(model_const, model_hyper)
-        # TODO:check if model works using a input
-
-        optimizer_hyper = self.getOptimValue(optim_range, optim_log)
-        self.optimizer_hyper = optimizer_hyper
-        loss_hyper = self.getLossValue(loss_range, loss_log)
-        self.loss_hyper = loss_hyper
-        model.compile(fit_const, optimizer_hyper, loss_hyper)
+    def prepareRandomSearch(self):
+        self.update_hyper()
+        model = self.model_type(self.model_const,self.model_hyper)
+        model.compile(self.fit_const,self.optimizer_hyper,self.loss_hyper)
         epoch_dfs = model.fitter.runPre()
-        self.models.append((model, model_hyper, optimizer_hyper, loss_hyper, epoch_dfs))
+        self.models.append((model, self.model_hyper, self.optimizer_hyper, self.loss_hyper, epoch_dfs))
         return epoch_dfs
 
-    def runKRandomSearchs(self, model_const, model_range,
-                            fit_const, optim_range,
-                            loss_range, k, model_log=None,loss_log=None, optim_log=None):
-        pre_epoch_dfs = self.prepareRandomSearch(model_const,model_range,model_log,
-                           fit_const,optim_range,optim_log,
-                           loss_range,loss_log)
+    def runKRandomSearchs(self, k ,max_epochs):
+        pre_epoch_dfs = self.prepareRandomSearch()
         epoch_runtime = pre_epoch_dfs['runtime'].iloc[-1]
-        max_epochs = 10
-        fit_const['max_epochs'] = max_epochs
+        self.fit_const['max_epochs'] = max_epochs
         max_time = int(max_epochs * epoch_runtime * k)
         permit = input('Time spent for this random search will be less than'+time.strftime('%H:%M:%S',time.gmtime(max_time))+'\ncontinue?[y/n]')
         if permit=='y' or permit=='Y':
             start_time = time.time()
             for i in range(k):
-                print('Running {0}th RandomSearch'.format(k))
-                self.runOneRandomSearch(model_const, model_range, model_log,
-                                         fit_const, optim_range, optim_log,
-                                         loss_range, loss_log)
+                print('Running {0}th RandomSearch'.format(i))
+                self.runOneRandomSearch()
             self.models = self.models[1:]
             end_time = time.time()
             period = end_time - start_time
@@ -152,10 +174,37 @@ class RandomSearcher(object):
 
     def report(self):
         K = len(self.models)
-        valid_misclasses,test_misclasses,train_misclasses = np.ones(K),np.ones(K),np.ones(K)
-        for k,res in enumerate(self.models):
-            valid_misclass,train_misclass,test_misclass = res[4]['valid_misclass'].values[0],res[4]['train_misclass'].values[0],res[4]['test_misclass'].values[0]
-            valid_misclasses[k],train_misclasses[k],test_misclasses[k] = valid_misclass,train_misclass,test_misclass
+        valid_misclasses, test_misclasses, train_misclasses = np.ones(K), np.ones(K), np.ones(K)
+        model_hypers, optim_hypers, loss_hypers = np.zeros((K, len(self.model_hypers))), np.zeros(
+            (K, len(self.optimizer_hypers))), np.zeros((K, len(self.loss_hypers)))
+        for k, res in enumerate(self.models):
+            valid_misclass, train_misclass, test_misclass = res[4]['valid_misclass'].values[-1], \
+                                                            res[4]['train_misclass'].values[-1], \
+                                                            res[4]['test_misclass'].values[
+                                                                -1]
+            valid_misclasses[k], train_misclasses[k], test_misclasses[k] = valid_misclass, train_misclass, test_misclass
+            for i, key in enumerate(res[1]):
+                model_hypers[k, i] = res[1][key]
+            for i, key in enumerate(res[2]):
+                optim_hypers[k, i] = res[2][key]
+            for i, key in enumerate(res[3]):
+                loss_hypers[k, i] = res[3][key]
+        N_para = len(self.loss_hypers)+len(self.optimizer_hypers)+len(self.model_hypers)
+        count = 1
+        plt.figure()
+        for i,key in enumerate(self.model_hypers):
+            plt.subplot(N_para,1,count);count+=1
+            plt.plot(model_hypers[:,i])
+            plt.title(key)
+        for i,key in enumerate(self.optimizer_hypers):
+            plt.subplot(N_para, 1, count);count += 1
+            plt.plot(optim_hypers[:,i])
+            plt.title(key)
+        for i,key in enumerate(self.loss_hypers):
+            plt.subplot(N_para, 1, count);count += 1
+            plt.plot(loss_hypers[:,i])
+            plt.title(key)
+
         plt.figure()
         plt.subplot(3,1,1)
         plt.plot(valid_misclasses)

@@ -2,13 +2,13 @@ from torch import nn
 from Estimators.Utilis.TorchExt import get_conved_dims
 import torch
 from torch.nn import init
+from Estimators.NetworkTrainner.Fitters.VanillaFitter import VanillaFitter
 
 class LeNet5(nn.Module):
     """
 
     """
-    def __init__(self,model_const=dict(img_size=(32,32),in_chan=3,n_classes=10),
-                 model_hyper=dict(n_kernel_0=6,n_kernel_1=16,linear_init_std=1e-3,conv_init_bias=1e-3)):
+    def __init__(self,model_const,model_hyper):
         super(LeNet5,self).__init__()
         self.img_size = model_const['img_size']
         self.in_chan = model_const['in_chan']
@@ -64,6 +64,7 @@ class LeNet5(nn.Module):
         train_set = fit_const['train_set']
         valid_set = fit_const['valid_set']
         test_set = fit_const['test_set']
+        fitter = fit_const['fitter']
 
         max_epochs = fit_const['max_epochs']
         max_increase_epochs = fit_const['max_increase_epochs']
@@ -72,19 +73,20 @@ class LeNet5(nn.Module):
 
         lr = optimizer_hyper['lr']
         model_constraint = loss_hyper['model_constraint']
-        from Estimators.NetworkTrainner.Fitters.VanillaFitter import VanillaFitter
-        self.fitter = VanillaFitter(
-            self,
-            train_set,
-            valid_set,
-            test_set,
-            max_epochs=max_epochs,
-            max_increase_epochs=max_increase_epochs,
-            cuda=cuda,
-            batch_size=batch_size,
-            lr=lr,
-            model_constraint=model_constraint
-        )
+
+        if fitter=='VanillaFitter':
+            self.fitter = VanillaFitter(
+                self,
+                train_set,
+                valid_set,
+                test_set,
+                max_epochs=max_epochs,
+                max_increase_epochs=max_increase_epochs,
+                cuda=cuda,
+                batch_size=batch_size,
+                lr=lr,
+                model_constraint=model_constraint
+            )
 
 
 
