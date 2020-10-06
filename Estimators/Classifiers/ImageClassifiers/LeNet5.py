@@ -2,13 +2,18 @@ from torch import nn
 from Estimators.Utilis.TorchExt import get_conved_dims
 import torch
 from torch.nn import init
-from Estimators.NetworkTrainner.Fitters.VanillaFitter import VanillaFitter
+from Estimators.NetworkTrainner.Fitters.NeuralNetworkFitters import VanillaFitter
 
 class LeNet5(nn.Module):
     """
 
     """
     def __init__(self,model_const,model_hyper):
+        """
+
+        :param model_const:parameter of model that won't hurt model's performance, have sth to do with dataset
+        :param model_hyper: parameter of the model that will influence model's performance
+        """
         super(LeNet5,self).__init__()
         self.img_size = model_const['img_size']
         self.in_chan = model_const['in_chan']

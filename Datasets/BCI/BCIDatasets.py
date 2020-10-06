@@ -7,17 +7,21 @@ import os
 import numpy as np
 from collections import OrderedDict
 
-base_dir = r'G:\undergraduate\MIdatabase'
+base_dir = r'H:\Datasets\MIDatabase'
 
-def preprocess_standard(dataset,raw_version,modified_version='standard'):
+def preprocess_standard(dataset,raw_version,modified_version='standard',low_cut_hz=4,high_cut_hz=38):
+    #TODO:交换顺序与选择都有不便，需要修改，或者把这个当作固定的函数，另写一个便于修改的函数
     DatasetUv(dataset, raw_version=raw_version, modified_version='temp')
-    StandardizationDataset(dataset,raw_version='temp', modified_version='temp')
-    ReplaceDatasetNan(dataset, raw_version='temp', modified_version='temp')
     DatasetExpRunStandard(dataset, raw_version='temp', modified_version='temp')
-    DatasetBandPass(dataset, raw_version='temp', modified_version=modified_version, low_cut_hz=4,
-                    high_cut_hz=38, fs=dataset.fs)
-    for EEG_subject in dataset.subjects_data:
-        del EEG_subject.subject_cnt['temp']
+    DatasetBandPass(dataset, raw_version='temp', modified_version='temp', low_cut_hz=low_cut_hz,
+                    high_cut_hz=high_cut_hz, fs=dataset.fs)
+    ReplaceDatasetNan(dataset, raw_version='temp', modified_version=modified_version)
+    #in case there is only one change
+    try:
+        for EEG_subject in dataset.subjects_data:
+            del EEG_subject.subject_cnt['temp']
+    except:
+        return
 
 def get_raw_trial_from_gdf_file(dataset, filename, classes=None ):
     raw_t = mne.io.read_raw_gdf(filename, stim_channel='auto')
@@ -114,7 +118,7 @@ class BCIC2_3(EEGDatabase):
         self.channel_names = ['C3','Cz','C4']
         self.channel_types = ['eeg'] * 3
         self.montage = 'standard_1005'
-        self.ys = (1,2) #指原始文件里记录的类型值
+        self.ys = (1,2) #class type that was recorded in the original data file
         self.chi_names = ['左手','右手']
 
         #construct data structure
@@ -138,8 +142,8 @@ class BCIC2_3(EEGDatabase):
             self.subjects_data[i].subject_cnt = {}
             self.subjects_data[i].subject_cnt['raw_epochs'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_epochs')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_epochs',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_epochs'):
         for i in range(self.n_subject):
@@ -188,8 +192,8 @@ class BCIC3_3a(EEGDatabase):
                     self.subjects_data[i].subject_cnt = {}
                     self.subjects_data[i].subject_cnt['raw_cnt'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_cnt')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_cnt',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_cnt'):
         for i in range(self.n_subject):
@@ -236,8 +240,8 @@ class BCIC3_3b(EEGDatabase):
                     self.subjects_data[i].subject_cnt = {}
                     self.subjects_data[i].subject_cnt['raw_cnt'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_cnt')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_cnt',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_cnt'):
         for i in range(self.n_subject):
@@ -318,8 +322,8 @@ class BCIC3_4a(EEGDatabase):
             self.subjects_data[i].subject_cnt = {}
             self.subjects_data[i].subject_cnt['raw_epochs'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_epochs')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_epochs',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_epochs'):
         for i in range(self.n_subject):
@@ -395,8 +399,8 @@ class BCIC3_4b(EEGDatabase):
             self.subjects_data[i].subject_cnt = {}
             self.subjects_data[i].subject_cnt['raw_epochs'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_epochs')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_epochs',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_epochs'):
         for i in range(self.n_subject):
@@ -464,8 +468,8 @@ class BCIC4_1(EEGDatabase):
             self.subjects_data[i].subject_cnt = {}
             self.subjects_data[i].subject_cnt['raw_epochs'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self, 'raw_epochs')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_epochs',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self, version='raw_epochs'):
         for i in range(self.n_subject):
@@ -527,8 +531,8 @@ class BCIC4_2a(EEGDatabase):
             self.subjects_data[i].subject_cnt = {}
             self.subjects_data[i].subject_cnt['raw_cnt'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_cnt')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_cnt',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_cnt'):
         for i in range(self.n_subject):
@@ -543,6 +547,7 @@ class BCIC4_2a(EEGDatabase):
                 self.subjects_data[i].subject_trials[idx].signal = trial
                 self.subjects_data[i].subject_trials[idx].target = raw.info['events'][idx,2]
 
+    #original version of function get_raw_from_filename, dont use any more
     def _get_raw_from_filename(self,filename,classes=None):
         raw_t = mne.io.read_raw_gdf(filename,stim_channel='auto')
         data = raw_t.get_data()
@@ -653,8 +658,8 @@ class BCIC4_2b(EEGDatabase):
             self.subjects_data[i].subject_cnt = {}
             self.subjects_data[i].subject_cnt['raw_cnt'] = raw
 
-    def preprocess_standard(self):
-        preprocess_standard(self,'raw_cnt')
+    def preprocess_standard(self,low_cut_hz=4,high_cut_hz=38):
+        preprocess_standard(self,raw_version='raw_cnt',low_cut_hz=low_cut_hz,high_cut_hz=high_cut_hz)
 
     def load_data(self,version='raw_cnt'):
         for i in range(self.n_subject):

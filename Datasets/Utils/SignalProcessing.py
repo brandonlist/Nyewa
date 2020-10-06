@@ -1,9 +1,13 @@
 import scipy
 import scipy.signal
-import numpy as np
 import pandas as pd
+from scipy import fftpack
+from matplotlib import pyplot as plt
+import numpy as np
 
-def HighpassCnt(data, low_cut_hz, fs, filt_order=3, axis=0):
+"""Mainly operate on numpy array data"""
+
+def HighpassCnt(data, low_cut_hz, fs, filt_order=8, axis=0):
     """
      Highpass signal applying **causal** butterworth filter of given order.
 
@@ -30,7 +34,7 @@ def HighpassCnt(data, low_cut_hz, fs, filt_order=3, axis=0):
     data_highpassed = scipy.signal.lfilter(b, a, data, axis=axis)
     return data_highpassed
 
-def LowpassCnt(data, high_cut_hz, fs, filt_order=3, axis=0):
+def LowpassCnt(data, high_cut_hz, fs, filt_order=8, axis=0):
     """
      Lowpass signal applying **causal** butterworth filter of given order.
 
@@ -58,7 +62,7 @@ def LowpassCnt(data, high_cut_hz, fs, filt_order=3, axis=0):
     return data_lowpassed
 
 def BandpassCnt(
-        data, low_cut_hz, high_cut_hz, fs, filt_order=3, axis=0, filtfilt=False
+        data, low_cut_hz, high_cut_hz, fs, filt_order=8, axis=0, filtfilt=False
 ):
     """
      Bandpass signal applying **causal** butterworth filter of given order.
@@ -136,7 +140,6 @@ def filter_is_stable(a):
     # from http://stackoverflow.com/a/8812737/1469195
     return np.all(np.abs(np.roots(a)) < 1)
 
-
 def ExponentialRunningStandardize(
         data, factor_new=0.001, init_block_size=None, eps=1e-4
 ):
@@ -190,5 +193,23 @@ def ExponentialRunningStandardize(
         standardized[0:init_block_size] = init_block_standardized
     return standardized
 
+def Envelop(data,display=0):
+    """
 
-
+    :param data:1-d array
+    :param display:
+    :return: data's up envelope
+    """
+    data_a = data - data.mean()
+    hx_a = fftpack.hilbert(data_a)
+    data_up = np.sqrt(data_a**2 + hx_a**2)+ data.mean()
+    # data_a_dw = -data_a
+    # hx_a_dw = fftpack.hilbert(data_a_dw)
+    # data_dw = -np.sqrt(data_a_dw**2 + hx_a_dw**2)+ data.mean()
+    # data_mean = (data_dw+data_up)/2
+    if display:
+        plt.plot(data,"b",linewidth=2, label='signal')
+        plt.plot(data_up,"r",linewidth=2, label='envelop')
+        plt.legend()
+        plt.show()
+    return data_up

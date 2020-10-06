@@ -19,7 +19,42 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5480f49-fbd4-472d-9cc6-eefaae5a237f" name="Default Changelist" comment="small changes in random search" />
+    <list default="true" id="d5480f49-fbd4-472d-9cc6-eefaae5a237f" name="Default Changelist" comment="small changes in random search">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/BCI/BCIDatasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/BCI/BCIDatasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/BCI/SignalTarget.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/BCI/SignalTarget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/Utils/SignalProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/Utils/SignalProcessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers/CSPmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers/CSPmodel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Estimators/Classifiers/ImageClassifiers/LeNet5.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/Classifiers/ImageClassifiers/LeNet5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/BaseFitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/BaseFitters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/EarlyStopFitter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/VanillaFitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/NeuralNetworkFitters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00000/default/metadata.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00000/default/sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00000/default/tensors.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00001/noMetadata/tensors.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00002/default/metadata.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00002/default/sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00002/default/tensors.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/data/scalar_group/arctanx/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/data/scalar_group/xcosx/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/data/scalar_group/xsinx/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/projector_config.pbtxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00000/default/metadata.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00000/default/sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00000/default/tensors.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00001/noMetadata/tensors.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00002/default/metadata.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00002/default/sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00002/default/tensors.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/data/scalar_group/arctanx/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/data/scalar_group/xcosx/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/data/scalar_group/xsinx/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/projector_config.pbtxt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +77,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="D:/Log/MIdecode" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -49,7 +85,43 @@
       <recent name="I:\pycharmProjects\Nyewa\Datasets\BCI" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.demo">
+  <component name="RunManager" selected="Python.CSPmodel">
+    <configuration name="CSPmodel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nyewa" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers/CSPmodel.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SignalProcessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nyewa" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Datasets/Utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Datasets/Utils/SignalProcessing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="deletelater" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nyewa" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.demo" />
-        <item itemvalue="Python.demo" />
-        <item itemvalue="Python.deletelater" />
-        <item itemvalue="Python.tp_script" />
-        <item itemvalue="Python.tp_script" />
+        <item itemvalue="Python.CSPmodel" />
+        <item itemvalue="Python.CSPmodel" />
+        <item itemvalue="Python.CSPmodel" />
+        <item itemvalue="Python.CSPmodel" />
+        <item itemvalue="Python.CSPmodel" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601694121755</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="small changes in random search">
+      <created>1601695012583</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1601695012583</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,6 +242,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="106" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601261855661" />
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1601952645997">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601952645997" />
+    <state x="2381" y="164" key="SettingsEditor" timestamp="1601694989060">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601694989060" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1601299986964">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -171,5 +258,9 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2412" y="0" width="725" height="1027" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280764646" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601969468979">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601969468979" />
   </component>
 </project>

@@ -7,9 +7,17 @@ import numpy as np
 
 class SignalAndTarget(Dataset):
     def __init__(self,dataset,subject_ids=None,ts_np=True):
+        """
+
+        :param dataset:
+        :param subject_ids: None by default, meaning all subjects
+        :param ts_np: whether to transfer self.X and self.y to numpy array
+        """
         if dataset.type=='BCI':
             self.sub_dataset = copy.deepcopy(dataset)
             self.sub_dataset.subjects_data = []
+            if subject_ids==None:
+                subject_ids = range(dataset.n_subject)
             for i in subject_ids:
                 self.sub_dataset.subjects_data.append(dataset.subjects_data[i])
             (self.X,self.y) = next(iter(DataLoader(self.sub_dataset,len(self.sub_dataset))))
