@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,42 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5480f49-fbd4-472d-9cc6-eefaae5a237f" name="Default Changelist" comment="small changes in random search">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/BCI/BCIDatasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/BCI/BCIDatasets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/BCI/SignalTarget.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/BCI/SignalTarget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/Utils/SignalProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/Utils/SignalProcessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers/CSPmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers/CSPmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Estimators/Classifiers/ImageClassifiers/LeNet5.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/Classifiers/ImageClassifiers/LeNet5.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/BaseFitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/BaseFitters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/EarlyStopFitter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/VanillaFitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Estimators/NetworkTrainner/Fitters/NeuralNetworkFitters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00000/default/metadata.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00000/default/sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00000/default/tensors.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00001/noMetadata/tensors.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00002/default/metadata.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00002/default/sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/00002/default/tensors.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/data/scalar_group/arctanx/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/data/scalar_group/xcosx/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/data/scalar_group/xsinx/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/events.out.tfevents.1601608192.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-09-52_DESKTOP-GHP9UQM/projector_config.pbtxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00000/default/metadata.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00000/default/sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00000/default/tensors.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00001/noMetadata/tensors.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00002/default/metadata.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00002/default/sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/00002/default/tensors.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/data/scalar_group/arctanx/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/data/scalar_group/xcosx/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/data/scalar_group/xsinx/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/events.out.tfevents.1601608276.DESKTOP-GHP9UQM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Oct02_11-11-16_DESKTOP-GHP9UQM/projector_config.pbtxt" beforeDir="false" />
-    </list>
+    <list default="true" id="d5480f49-fbd4-472d-9cc6-eefaae5a237f" name="Default Changelist" comment="small changes in random search" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,80 +50,24 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\pycharmProjects\Nyewa" />
       <recent name="I:\pycharmProjects\Nyewa\Datasets\BCI" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.CSPmodel">
-    <configuration name="CSPmodel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Nyewa" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Estimators/Classifiers/EEGClassifiers/CSPmodel.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.tp_script">
     <configuration name="SignalProcessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nyewa" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Datasets/Utils" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Datasets/Utils/SignalProcessing.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="deletelater" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Nyewa" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deletelater.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Nyewa" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,13 +97,76 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tp_script_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nyewa" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tp_script_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tp_script_3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nyewa" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tp_script_3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tp_script_4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nyewa" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tp_script_4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.CSPmodel" />
-        <item itemvalue="Python.CSPmodel" />
-        <item itemvalue="Python.CSPmodel" />
-        <item itemvalue="Python.CSPmodel" />
-        <item itemvalue="Python.CSPmodel" />
+        <item itemvalue="Python.tp_script" />
+        <item itemvalue="Python.tp_script" />
+        <item itemvalue="Python.tp_script_2" />
+        <item itemvalue="Python.tp_script_3" />
+        <item itemvalue="Python.tp_script_4" />
       </list>
     </recent_temporary>
   </component>
@@ -218,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601695012583</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="small changes in random search">
+      <created>1601975247892</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601975247892</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,10 +224,47 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="106" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601261855661" />
-    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1601952645997">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603417906133">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603417906133" />
+    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601952645997" />
+    <state x="2752" y="417" key="Github.ShareDialog" timestamp="1601975233024">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601952645997" />
+    <state x="2752" y="417" key="Github.ShareDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975233024" />
+    <state width="1899" height="348" key="GridCell.Tab.0.bottom" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
+    <state width="1899" height="348" key="GridCell.Tab.0.center" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
+    <state width="1899" height="348" key="GridCell.Tab.0.left" timestamp="1601975375524">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375524" />
+    <state width="1899" height="348" key="GridCell.Tab.0.right" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
+    <state width="1899" height="348" key="GridCell.Tab.1.center" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
+    <state width="1899" height="348" key="GridCell.Tab.1.left" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
+    <state width="1899" height="348" key="GridCell.Tab.1.right" timestamp="1601975375525">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601975375525" />
     <state x="2381" y="164" key="SettingsEditor" timestamp="1601694989060">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -258,9 +277,9 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2412" y="0" width="725" height="1027" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280764646" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601969468979">
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601976499225">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601969468979" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601976499225" />
   </component>
 </project>

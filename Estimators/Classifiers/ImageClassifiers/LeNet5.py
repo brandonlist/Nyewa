@@ -15,6 +15,9 @@ class LeNet5(nn.Module):
         :param model_hyper: parameter of the model that will influence model's performance
         """
         super(LeNet5,self).__init__()
+        self.model_const = model_const
+        self.model_hyper = model_hyper
+
         self.img_size = model_const['img_size']
         self.in_chan = model_const['in_chan']
         self.n_classes = model_const['n_classes']

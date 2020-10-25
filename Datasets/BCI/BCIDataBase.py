@@ -71,4 +71,8 @@ class EEGDatabase(Dataset):
     def memory(self):
         print(sys.getsizeof(self) / 1024 / 1024, 'MB')
 
+    @property
+    def time_steps(self):
+        signal = self.subjects_data[0].subject_trials[0].signal
+        return signal.shape[1]
 

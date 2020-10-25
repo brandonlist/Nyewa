@@ -83,11 +83,13 @@ def get_raw_trial_from_gdf_file(dataset, filename, classes=None ):
     if dataset.name == 'BCIC4_2a' or dataset.name == 'BCIC4_2b':
         trial_start_events = events[events[:, 2] == code_start]
     if dataset.name == 'BCIC3_3a':
-        events_no1 = events[events[:, 2] != 1]
-        t_time = [events_no1[i + 3, 0] for i, c in enumerate(events_no1[:-3, 2]) if
-                  c == 2 and (events_no1[i + 3, 2] in [3, 4, 5, 6])]
-        mask = [(t in t_time) for t in events[:,0]]
-        trial_start_events = events[mask]
+        # TODO:have bug reading it, not a big problem since not every dataset has mask for rejected trials
+        return raw
+    #     events_no1 = events[events[:, 2] != 1]
+    #     t_time = [events_no1[i + 3, 0] for i, c in enumerate(events_no1[:-3, 2]) if
+    #               c == 2 and (events_no1[i + 3, 2] in [3, 4, 5, 6])]
+    #     mask = [(t in t_time) for t in events[:,0]]
+    #     trial_start_events = events[mask]
     assert len(trial_start_events)==len(trial_events),print(len(trial_start_events),len(trial_events))
     artifact_trial_mask = np.zeros(len(trial_start_events), dtype=np.uint8)
     artifact_events = events[events[:, 2] == name_to_code['1023']]
@@ -207,8 +209,6 @@ class BCIC3_3a(EEGDatabase):
             for idx,trial in enumerate(epochs):
                 self.subjects_data[i].subject_trials[idx].signal = trial
                 self.subjects_data[i].subject_trials[idx].target = raw.info['events'][idx,2]
-
-
 
 class BCIC3_3b(EEGDatabase):
     def __init__(self,path=os.path.join(base_dir,r'BCIC3\3\3b')):

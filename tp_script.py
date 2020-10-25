@@ -63,7 +63,7 @@ fit_const = {
 }
 RS = RandomSearcher(model_hypers=model_hypers,optimizer_hypers=optimizer_hypers,loss_hypers=loss_hypers
                   ,model_type=LeNet5,model_const=model_const,fit_const=fit_const)
-RS.runKRandomSearchs(k=30,max_epochs=50)
+RS.runKRandomSearchs(k=10,max_epochs=10)
 
 
 # best_model = RS.best_model
